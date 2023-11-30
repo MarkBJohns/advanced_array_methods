@@ -2,3 +2,9 @@ body{
     background-color: black;
     color: white;
 }
+
+#rps{
+    text-align: center;
+    background-color: #333333;
+    color: darkgray;
+}
