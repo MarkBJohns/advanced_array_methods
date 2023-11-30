@@ -32,7 +32,6 @@ function rockPaperScissors(num){
     }else if(num===3){
      weapon='Scissors';
     }else return 'Invalid';
-    console.log(weapon);
     return weapon;
  }
 
@@ -119,4 +118,55 @@ function divide(x,y){
 //      Again, un-commenting will just log the value of the 'multiply' function rather than executing
 //      it.
 
-console.log(arithmetic[2](2,3));
+// console.log(arithmetic[2](2,3));
+
+//      This line, because of the parentheses, executes the code. And this time, it has parameters,
+//      so the console will log '6', the result of executing the code with 2 and 3.
+
+// ----------------------------------------------------------------------------------------------------------------
+
+//      CALLING FUNCTIONS
+
+// --------------------------------------------------------------
+
+// Say you're working on the beginnings of a calculator app. You need to be able to recall any of
+//      the arithmetic functions inside your calculation function. You can do this by making a 
+//      calculate function, and using two numbers with a function as your arguments.
+
+function calculate(a,b,funct){
+    return funct(a,b);
+}
+
+// Now you can enter any of the arithmetic functions into your calculate function and it will do the
+//      appropriate function to the number arguments. For example:
+
+// console.log(calculate(2,3,add));
+
+//      will equal "5",
+
+// console.log(calculate(7,3,subtract));
+
+//      will equal "4", and so on.
+
+// But say you want to perform a series of functions on the same set of arguments. This goes back
+//      to functions being saved as variables, and those variables being saved in an array.
+
+function allMath(a,b,arithmetic){
+    let results=[];
+    for(let func of arithmetic){
+        results.push(func(a,b));
+    }
+    console.log(results);
+    return results;
+}
+
+// Because 'arithmetic' is an array, you can loop through each index of the array and perform each
+//      of those functions. The allMath function then takes each of those results and adds them to 
+//      our 'results' array. 
+
+// ----------------------------------------------------------------------------------------------------------------
+
+//      FOREACH()
+
+// --------------------------------------------------------------
+
