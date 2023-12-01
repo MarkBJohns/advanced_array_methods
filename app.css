@@ -29,3 +29,19 @@ body{
     width: 50px;
     aspect-ratio: 1/1;
 }
+
+#maptest{
+    display: flex;
+    align-items: center;
+}
+#maptest button{
+    width: 50px;
+    aspect-ratio: 1/1;
+    margin: 5px;
+}
+#mapfield{
+    flex-grow: 0;
+    text-align: center;
+    background-color: #333333;
+    color: darkgray;
+}

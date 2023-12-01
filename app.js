@@ -7,7 +7,10 @@ const doMath=document.querySelector('#arithmetic button');
 const answerField=document.getElementById('answer');
 const colorBlocks=document.querySelectorAll('.colorblock');
 const colorBtn=document.getElementById('color')
-
+const double=document.getElementById('dub');
+const triple=document.getElementById('trip');
+const quadruple=document.getElementById('quad');
+const mapField=document.getElementById('mapfield');
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -171,8 +174,8 @@ function allMath(a,b,arithmetic){
 
 // Because 'arithmetic' is an array, you can loop through each index of the array and perform each
 //      of those functions. The allMath function then takes each of those results and adds them to 
-//      our 'results' array. Un-comment line 166 to see the solution in the console. Try entering 
-//      two numbers and clicking the Do Math button to text it out.
+//      our 'results' array. Un-comment console.log line to see the solution in the console, or try
+//      entering two numbers and clicking the Do Math button to test out more numbers.
 
 doMath.addEventListener('click',function(e){
     e.preventDefault();
@@ -235,3 +238,22 @@ colorBtn.addEventListener('click',function(){
 
 // A for/of loop has effectively the same function as the forEach() function, so it's largely up to
 //      whatever you find more convenient.
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//                                              MAP
+
+// ----------------------------------------------------------------------------------------------------------------
+
+// A simple way to create new iterate through an array, make changes, and return a new array
+//      (without changing the initial array) is with the 'map' function. For example, if we want to
+//      double every number in an array, we can do that very efficiently with map.
+
+let count=[1,2,3];
+
+double.addEventListener('click',function(){
+    let newArray=count.map(function(value){
+        return value*2;
+    })
+    mapField.value=JSON.stringify(newArray);
+})

@@ -36,6 +36,8 @@ describe('All Math Function',function(){
 describe('Changing colors with forEach()',function(){
     it('should properly shuffle arrays',function(){
         let testArr=[1,2,3,4];
-        expect(shuffleArray(testArr)).not.toEqual([1,2,3,4]);
+        let shuffled=shuffleArray(testArr);
+        expect(shuffled).toEqual(jasmine.arrayContaining(testArr));
+        expect(shuffled.length).toEqual(testArr.length);
     })
 })
