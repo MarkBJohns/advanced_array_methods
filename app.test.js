@@ -32,3 +32,10 @@ describe('All Math Function',function(){
         expect(allMath(5,5,arithmetic)).toEqual([10,0,25,1]);
     })
 })
+
+describe('Changing colors with forEach()',function(){
+    it('should properly shuffle arrays',function(){
+        let testArr=[1,2,3,4];
+        expect(shuffleArray(testArr)).not.toEqual([1,2,3,4]);
+    })
+})
