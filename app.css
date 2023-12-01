@@ -22,3 +22,10 @@ body{
     background-color: #333333;
     color: darkgray;
 }
+#foreach{
+    display: flex;
+}
+#foreach button{
+    width: 50px;
+    aspect-ratio: 1/1;
+}

@@ -1,4 +1,3 @@
-
 console.log('Advanced Array Methods');
 const rpsBtn=document.getElementById('rpsBtn');
 const rpsField=document.getElementById('rps');
@@ -6,6 +5,9 @@ const firstNumField=document.getElementById('firstnum');
 const secondNumField=document.getElementById('secondnum');
 const doMath=document.querySelector('#arithmetic button');
 const answerField=document.getElementById('answer');
+const colorBlocks=document.querySelectorAll('.colorblock');
+const colorBtn=document.getElementById('color')
+
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -169,11 +171,8 @@ function allMath(a,b,arithmetic){
 
 // Because 'arithmetic' is an array, you can loop through each index of the array and perform each
 //      of those functions. The allMath function then takes each of those results and adds them to 
-//      our 'results' array. Un-comment line 162 to see the solution in the console.
-
-function answerMath(){
-    let solution=answerField.value;
-}
+//      our 'results' array. Un-comment line 166 to see the solution in the console. Try entering 
+//      two numbers and clicking the Do Math button to text it out.
 
 doMath.addEventListener('click',function(e){
     e.preventDefault();
@@ -198,10 +197,41 @@ doMath.addEventListener('click',function(e){
 
 // An simple native callback function for arrays is forEach(), which is similar to a for/in loop.
 //      It will run a callback function for each value in the array argument, and then return 
-//      "undefined".
+//      "undefined". The argument for forEach() is a function, along with whatever name you give for
+//      the indexed items.
 
-let numArray=[1,2,3,4,5];
+let colorArray=['maroon','darkolivegreen','goldenrod','midnightblue'];
 
-numArray.forEach(function(value,index,array){
-    console.log(value);
+// We have an array of four colors here, and on the webpage there's a row of 4 buttons. We can click
+//      the "Color" button to take the four colors in the array and make them the background for
+//      each of the buttons. First we need to make a callback function that randomizes the order, so
+//      the backgrounds will change every time we click the button as opposed to just once.
+
+function shuffleArray(array){
+    let newArray=array.slice();
+    // We don't want to change the original colorArray, so we make a copy using slice()
+    for(let i=newArray.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [newArray[i],newArray[j]]=[newArray[j],newArray[i]];
+    }
+    return newArray;
+}
+
+//      And now that we have our randomized array, we can add an event listener to go through each
+//      index of the array, and apply that color to a button's background. An easy way to do this is
+//      with the forEach() function.
+
+colorBtn.addEventListener('click',function(){
+    let shuffled=shuffleArray(colorArray);
+    // we create a new temporary array by calling back the shuffleArray() function for colorArray
+    colorBlocks.forEach(function(block){
+        let randomColor=shuffled.pop();
+        block.style.backgroundColor=randomColor;
+        // we take the last color in the 'shuffled' array, remove it from the array, and apply it
+        //  to the current button element. This repeats until the array is empty and all blocks 
+        //  have a new background.
+    })
 })
+
+// A for/of loop has effectively the same function as the forEach() function, so it's largely up to
+//      whatever you find more convenient.
