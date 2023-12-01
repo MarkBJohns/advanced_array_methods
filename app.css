@@ -8,3 +8,17 @@ body{
     background-color: #333333;
     color: darkgray;
 }
+#arithmetic{
+    display: flex;
+}
+#firstnum{
+    width: 50px;
+}
+#secondnum{
+    width: 50px;
+}
+#answer{
+    text-align: center;
+    background-color: #333333;
+    color: darkgray;
+}

@@ -2,6 +2,10 @@
 console.log('Advanced Array Methods');
 const rpsBtn=document.getElementById('rpsBtn');
 const rpsField=document.getElementById('rps');
+const firstNumField=document.getElementById('firstnum');
+const secondNumField=document.getElementById('secondnum');
+const doMath=document.querySelector('#arithmetic button');
+const answerField=document.getElementById('answer');
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -159,13 +163,32 @@ function allMath(a,b,arithmetic){
     for(let func of arithmetic){
         results.push(func(a,b));
     }
-    console.log(results);
+    // console.log(results);
     return results;
 }
 
 // Because 'arithmetic' is an array, you can loop through each index of the array and perform each
 //      of those functions. The allMath function then takes each of those results and adds them to 
-//      our 'results' array. 
+//      our 'results' array. Un-comment line 162 to see the solution in the console.
+
+function answerMath(){
+    let solution=answerField.value;
+}
+
+doMath.addEventListener('click',function(e){
+    e.preventDefault();
+    let solution='';
+    let firstNum=parseFloat(firstNumField.value);
+    let secondNum=parseFloat(secondNumField.value);
+    if(!isNaN(firstNum)&&!isNaN(secondNum)){
+        let solution=allMath(firstNum,secondNum,arithmetic);
+        answerField.value=solution.join(', ');
+    }else{
+        answerField.value='Invalid Input';
+    }
+    firstNum='';
+    secondNum='';
+})
 
 // ----------------------------------------------------------------------------------------------------------------
 
@@ -173,3 +196,12 @@ function allMath(a,b,arithmetic){
 
 // --------------------------------------------------------------
 
+// An simple native callback function for arrays is forEach(), which is similar to a for/in loop.
+//      It will run a callback function for each value in the array argument, and then return 
+//      "undefined".
+
+let numArray=[1,2,3,4,5];
+
+numArray.forEach(function(value,index,array){
+    console.log(value);
+})
