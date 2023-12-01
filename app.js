@@ -11,6 +11,11 @@ const double=document.getElementById('dub');
 const triple=document.getElementById('trip');
 const quadruple=document.getElementById('quad');
 const mapField=document.getElementById('mapfield');
+const pokeList=document.getElementById('pokemon-list');
+const noramlBtn=document.getElementById('normal');
+const darkBtn=document.getElementById('dark');
+const fireBtn=document.getElementById('fire');
+const pokeField=document.querySelector('#filtertest input');
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -288,7 +293,7 @@ quadruple.addEventListener('click',function(){
 
 // ----------------------------------------------------------------------------------------------------------------
 
-//      USING MAPS
+//      FILTER
 
 // --------------------------------------------------------------
 
@@ -315,6 +320,30 @@ const Pokemon=[
     {
         species : 'Snorlax',
         type    : 'Normal'
+    },
+    {
+        species : 'Slaking',
+        type    : 'Normal'
+    },
+    {
+        species : 'Ninetales',
+        type    : 'Fire'
+    },
+    {
+        species : 'Zoroark',
+        type    : 'Dark'
+    },
+    {
+        species : 'Blissey',
+        type    : 'Normal'
+    },
+    {
+        species : 'Magmar',
+        type    : 'Fire'
+    },
+    {
+        species : 'Porygon-Z',
+        type    : 'Normal'
     }
 ];
 
@@ -336,7 +365,11 @@ const getDark=types.map(function(type,index){
     return index!==-1;
 })
 
-//      You now have an array that says "[0,2]", where Absol and Umbreon are. 
+//      But note the "filter" function at the end. Without filtering, getDark would return an array
+//      with the same length as Pokemon, where every element that doesn't share the "Dark" type 
+//      would just be converted to -1 ([0,-1,2,-1,-1...]). By adding the filter function, we can get
+//      a new array that only returns the elements that aren't -1, giving us an array of [0,2], or
+//      Absol and Umbreon, our dark types.
 
 function getTypes(Pokemon,getType){
     return getType.map(function(index){
@@ -370,3 +403,28 @@ const getNormal=types.map(function(type,index){
 })
 
 const normalTypes=getTypes(Pokemon,getNormal);
+
+// As a reminder, the map function will return an array, but the array isn't saved anywhere unless
+//      you create something for it to be saved to. This is why all of these functions are being 
+//      saved as variables, so the new array created has something you can reference to get them.
+
+// --------------------------------------------------------------
+
+// Go on the webpage to see the filtering in action. Clicking the type buttons will fill the text
+//      field with Pokemon from the list that correspond with the button type.
+
+const names=Pokemon.map(function(pokes){
+    return pokes.species;
+})
+
+pokeList.innerText=names.join(', ');
+
+noramlBtn.addEventListener('click',function(){
+    pokeField.value=normalTypes.join(', ');
+})
+darkBtn.addEventListener('click',function(){
+    pokeField.value=darkTypes.join(', ');
+})
+fireBtn.addEventListener('click',function(){
+    pokeField.value=fireTypes.join(', ');
+})

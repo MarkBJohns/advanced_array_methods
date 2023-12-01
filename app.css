@@ -45,3 +45,10 @@ body{
     background-color: #333333;
     color: darkgray;
 }
+
+#filtertest input{
+    width: 300px;
+    text-align: center;
+    background-color: #333333;
+    color: darkgray;
+}
