@@ -42,6 +42,13 @@ describe('Changing colors with forEach()',function(){
     })
 })
 
+describe('Filter function getting the correct letters',function(){
+    it('should separate vowels from consonants',function(){
+        expect(vowels).toEqual(['a','e','i','o','u']);
+        expect(consonants).not.toEqual(jasmine.arrayContaining(['a','e','i','o','u']));
+    })
+})
+
 describe('Getting types filtered out of the Pokemon list',function(){
     it('should get an array with just the types',function(){
         expect(types).toEqual(['Dark','Normal','Dark','Fire','Normal','Normal','Fire','Dark','Normal','Fire','Normal']);
