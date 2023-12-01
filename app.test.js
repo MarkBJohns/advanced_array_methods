@@ -41,3 +41,14 @@ describe('Changing colors with forEach()',function(){
         expect(shuffled.length).toEqual(testArr.length);
     })
 })
+
+describe('Getting types filtered out of the Pokemon list',function(){
+    it('should get an array with just the types',function(){
+        expect(types).toEqual(['Dark','Normal','Dark','Fire','Normal','Normal','Fire','Dark','Normal','Fire','Normal']);
+    })
+    it('should accurately filter out types',function(){
+        expect(getTypes(Pokemon,getNormal)).toEqual(normalTypes);
+        expect(getTypes(Pokemon,getDark)).toEqual(darkTypes);
+        expect(getTypes(Pokemon,getFire)).toEqual(fireTypes);
+    })
+})
