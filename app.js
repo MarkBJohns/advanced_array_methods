@@ -251,9 +251,122 @@ colorBtn.addEventListener('click',function(){
 
 let count=[1,2,3];
 
+//      Instead of writing a forEach() function, we can use 'map', which will take the array we want
+//      to worth with, apply the stated change to each index in the array, and create a new array
+//      with those applied changes. Check the functions below and test them on the webpage.
+
 double.addEventListener('click',function(){
     let newArray=count.map(function(value){
         return value*2;
     })
     mapField.value=JSON.stringify(newArray);
 })
+
+triple.addEventListener('click',function(){
+    let newArray=count.map(function(value){
+        return value*3;
+    })
+    mapField.value=JSON.stringify(newArray);
+})
+
+quadruple.addEventListener('click',function(){
+    let newArray=count.map(function(value){
+        return value*4;
+    })
+    mapField.value=JSON.stringify(newArray);
+})
+
+// Each of the changes (*2, *3, *4) applied to each element in the array, and created a new array
+//      that we populated the text field with.
+
+// --------------------------------------------------------------
+
+// On its own, the map function only uses 'return', so if you want to save the new array created,
+//      you need to create a variable, which is why there was the newArray variable in the event
+//      listeners above. However, the 'return' is still necessary for map to function, as without it
+//      you'll get individual values rathere than an array.
+
+// ----------------------------------------------------------------------------------------------------------------
+
+//      USING MAPS
+
+// --------------------------------------------------------------
+
+//  Say you want to build a mono-type team for a gym leader, and you have a list of Pokemon to 
+//      choose from:
+
+const Pokemon=[
+    {
+        species : 'Absol',
+        type    : 'Dark'
+    },
+    {
+        species : 'Miltank',
+        type    : 'Normal'
+    },
+    {
+        species : 'Umbreon',
+        type    : 'Dark'
+    },
+    {
+        species : 'Arcanine',
+        type    : 'Fire'
+    },
+    {
+        species : 'Snorlax',
+        type    : 'Normal'
+    }
+];
+
+//      You only want to use Dark type Pokemon, so how can you use a map to filter them?
+
+// First, you can isolate the specific keys you're looking for, in this case, the type.
+
+const types=Pokemon.map(function(pokes){
+    return pokes.type;
+})
+
+//      This will give you a new array with only the types of each Pokemon. Now if you want to 
+//      get all of the Dark types out of it, you can make another map that looks specifically for
+//      indexes of "Dark" and notes which number they are.
+
+const getDark=types.map(function(type,index){
+    return type==='Dark'?index:-1;
+}).filter(function(index){
+    return index!==-1;
+})
+
+//      You now have an array that says "[0,2]", where Absol and Umbreon are. 
+
+function getTypes(Pokemon,getType){
+    return getType.map(function(index){
+        return Pokemon[index].species;
+    })
+}
+
+//      Next, we make a map function that takes the array from getDark and uses them to find the
+//      dark types in 'Pokemon'. In this case, 0 and 2. This is take Pokemon[0] and Pokemon[2], and
+//      make a new array with the species of Pokemon.
+
+const darkTypes=getTypes(Pokemon,getDark);
+
+//      Finally, we have our list of Dark types by using the callback function getDark() along with
+//      our Pokemon array. You can use these same steps for every other type, and because of how the
+//      functions operate, you can change the order of the Pokemon or add as many more as you want 
+//      and everything will still work.
+
+const getFire=types.map(function(type,index){
+    return type==='Fire'?index:-1;
+}).filter(function(index){
+    return index!==-1;
+})
+
+const fireTypes=getTypes(Pokemon,getFire);
+
+const getNormal=types.map(function(type,index){
+    return type==='Normal'?index:-1;
+}).filter(function(index){
+    return index!==-1;
+})
+
+const normalTypes=getTypes(Pokemon,getNormal);
