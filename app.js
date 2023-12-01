@@ -92,7 +92,10 @@ function multiply(x,y){
     return x*y;
 }
 function divide(x,y){
-    return x/y;
+    if(y!==0){
+        return x/y;
+    }else return;
+    
 }
 
 // For Javascript to differentiate between a function as a value or a function to be executed, you

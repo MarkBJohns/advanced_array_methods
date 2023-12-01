@@ -13,6 +13,7 @@ describe('Arithmetic functions',function(){
         expect(subtract(10,10)).toEqual(0);
         expect(multiply(10,10)).toEqual(100);
         expect(divide(10,10)).toEqual(1);
+        expect(divide(10,0)).toEqual(undefined);
     })
 })
 
