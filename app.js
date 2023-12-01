@@ -11,6 +11,10 @@ const double=document.getElementById('dub');
 const triple=document.getElementById('trip');
 const quadruple=document.getElementById('quad');
 const mapField=document.getElementById('mapfield');
+const letterField=document.querySelector('#lettertest input');
+const vowelBtn=document.getElementById('vowels');
+const consonantBtn=document.getElementById('consonants');
+const resetBtn=document.getElementById('reset');
 const pokeList=document.getElementById('pokemon-list');
 const noramlBtn=document.getElementById('normal');
 const darkBtn=document.getElementById('dark');
@@ -108,7 +112,7 @@ function multiply(x,y){
 function divide(x,y){
     if(y!==0){
         return x/y;
-    }else return;
+    }else return 'error';
     
 }
 
@@ -291,9 +295,57 @@ quadruple.addEventListener('click',function(){
 //      listeners above. However, the 'return' is still necessary for map to function, as without it
 //      you'll get individual values rathere than an array.
 
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//                                              FILTER
+
 // ----------------------------------------------------------------------------------------------------------------
 
-//      FILTER
+// While forEach() returns a new array with each element transformed in someway, sometimes rather
+//      than changing every element, you want to take elements as they are, but only if they meet
+//      certain conditions.
+
+const letters=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u',
+'v','w','x','y','z'];
+
+// Take the alphabet, 26 elements separated into vowels and consonants. We can use the filter 
+//      function to create two new arrays with only the proper letter type, as you can see below.
+
+const vowels=letters.filter(function(value,index,array){
+    return value==='a'||value==='e'||value==='i'||value==='o'||value==='u';
+})
+const consonants=letters.filter(function(value,index,array){
+    return value!=='a'&&value!=='e'&&value!=='i'&&value!=='o'&&value!=='u';
+})
+
+// On the webpage you can see the two array values being placed in the text field when you click 
+//      the corresponding buttons.
+
+letterField.value=letters.join(', ');
+
+vowelBtn.addEventListener('click',function(){
+    letterField.value=vowels.join(', ');
+})
+consonantBtn.addEventListener('click',function(){
+    letterField.value=consonants.join(', ');
+})
+resetBtn.addEventListener('click',function(){
+    letterField.value=letters.join(', ');
+})
+
+// The filter function allows you to look for a variety of parameters, such as the lenght of strings,
+//      whether certain letters are contained in the element, etc, etc. Importantly, just like with
+//      forEach(), the original array is not affected, and you need a variable to save the value
+//      being returned by the filter function.
+
+// The filter function works exclusively with Booleans, so every filter function will be based on
+//      whether an element is or is not a particular thing.
+
+// --------------------------------------------------------------
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//      MAPS + FILTER
 
 // --------------------------------------------------------------
 
@@ -365,11 +417,7 @@ const getDark=types.map(function(type,index){
     return index!==-1;
 })
 
-//      But note the "filter" function at the end. Without filtering, getDark would return an array
-//      with the same length as Pokemon, where every element that doesn't share the "Dark" type 
-//      would just be converted to -1 ([0,-1,2,-1,-1...]). By adding the filter function, we can get
-//      a new array that only returns the elements that aren't -1, giving us an array of [0,2], or
-//      Absol and Umbreon, our dark types.
+//      Now you have a new array that only has the indexes of dark types.
 
 function getTypes(Pokemon,getType){
     return getType.map(function(index){
@@ -428,10 +476,3 @@ darkBtn.addEventListener('click',function(){
 fireBtn.addEventListener('click',function(){
     pokeField.value=fireTypes.join(', ');
 })
-
-// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-//                                              FILTER
-
-// ----------------------------------------------------------------------------------------------------------------
-
