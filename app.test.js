@@ -62,9 +62,18 @@ describe('Getting types filtered out of the Pokemon list',function(){
 
 describe('Checking for any instances with some()',function(){
     it('should return true or false depending on if element conditions are met',function(){
-        hasNormalType=hasType(Pokemon,'Normal');
-        hasWaterType=hasType(Pokemon,'Water');
+        let hasNormalType=hasType(Pokemon,'Normal');
+        let hasWaterType=hasType(Pokemon,'Water');
         expect(hasNormalType).toEqual(true);
         expect(hasWaterType).toEqual(false);
+    })
+})
+
+describe('Checking for unanimous instances with every()',function(){
+    it('should return true or false depending on every element sharing a condition',function(){
+        let testArrOne=[{type:'Test'},{type:'Test'}];
+        let testArrTwo=[{type:'Test'},{type:'Fail'}];
+        expect(monoType(testArrOne,'Test')).toEqual(true);
+        expect(monoType(testArrTwo,'Test')).toEqual(false);
     })
 })
