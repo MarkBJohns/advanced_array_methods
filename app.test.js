@@ -59,3 +59,12 @@ describe('Getting types filtered out of the Pokemon list',function(){
         expect(getTypes(Pokemon,getFire)).toEqual(fireTypes);
     })
 })
+
+describe('Checking for any instances with some()',function(){
+    it('should return true or false depending on if element conditions are met',function(){
+        hasNormalType=hasType(Pokemon,'Normal');
+        hasWaterType=hasType(Pokemon,'Water');
+        expect(hasNormalType).toEqual(true);
+        expect(hasWaterType).toEqual(false);
+    })
+})

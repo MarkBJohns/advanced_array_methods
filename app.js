@@ -20,6 +20,9 @@ const noramlBtn=document.getElementById('normal');
 const darkBtn=document.getElementById('dark');
 const fireBtn=document.getElementById('fire');
 const pokeField=document.querySelector('#filtertest input');
+const typeField=document.querySelector('#some input');
+const someDark=document.getElementById('somedark');
+const someBug=document.getElementById('somebug');
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -475,4 +478,45 @@ darkBtn.addEventListener('click',function(){
 })
 fireBtn.addEventListener('click',function(){
     pokeField.value=fireTypes.join(', ');
+})
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//                                             SOME
+
+// --------------------------------------------------------------
+
+// If you need to see whether any element in an array meets a certain condition, you can use the
+//      some() function. Some() will iterate through the array and see if at least one element 
+//      meets a specified condition, and if it does, it will return "true". If no elements meet
+//      the conditions, it will return "false".
+
+// Let's say you're about to take on the Ghost type gym, so you want to see if you have any Dark
+//      types in your PC. You can take the Pokemon array and add a some() function to check for
+//      the dark type.
+
+function hasType(arr,type){
+    return Pokemon.some(function(pokemon){
+        return pokemon.type===type;
+    })
+}
+
+//      Now if you "Pokemon" and "'Dark'" into your hasType() function, you can check if you do
+//      (true) or don't (false) have any Dark types available.
+
+const hasDarkType=hasType(Pokemon,'Dark');
+
+//      In this case, hasDarkType will equal "true", and checking for other types you may not have
+//      will return "false".
+
+const hasBugType=hasType(Pokemon,'Bug');
+
+//      In this case, hasBugType will return "false", because there are no bug types in the array.
+
+someDark.addEventListener('click',function(){
+    typeField.value=JSON.stringify(hasDarkType);
+})
+
+someBug.addEventListener('click',function(){
+    typeField.value=JSON.stringify(hasBugType);
 })
