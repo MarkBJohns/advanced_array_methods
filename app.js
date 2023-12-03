@@ -20,9 +20,16 @@ const noramlBtn=document.getElementById('normal');
 const darkBtn=document.getElementById('dark');
 const fireBtn=document.getElementById('fire');
 const pokeField=document.querySelector('#filtertest input');
+const somePokemon=document.querySelector('#some p');
 const typeField=document.querySelector('#some input');
 const someDark=document.getElementById('somedark');
 const someBug=document.getElementById('somebug');
+const groundField=document.getElementById('monoground');
+const fightField=document.getElementById('monofight');
+const groundBtn=document.getElementById('ground');
+const fightBtn=document.getElementById('fighting');
+const everyTest=document.querySelector('#every input');
+
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -496,7 +503,7 @@ fireBtn.addEventListener('click',function(){
 //      the dark type.
 
 function hasType(arr,type){
-    return Pokemon.some(function(pokemon){
+    return arr.some(function(pokemon){
         return pokemon.type===type;
     })
 }
@@ -513,6 +520,8 @@ const hasBugType=hasType(Pokemon,'Bug');
 
 //      In this case, hasBugType will return "false", because there are no bug types in the array.
 
+somePokemon.innerText=names.join(', ');
+
 someDark.addEventListener('click',function(){
     typeField.value=JSON.stringify(hasDarkType);
 })
@@ -520,3 +529,81 @@ someDark.addEventListener('click',function(){
 someBug.addEventListener('click',function(){
     typeField.value=JSON.stringify(hasBugType);
 })
+
+// ----------------------------------------------------------------------------------------------------------------
+
+//                                          EVERY
+
+// --------------------------------------------------------------
+
+// If you need every element in the array to meet specified conditions rather than just one, you
+//      can use the every() function instead.
+
+// Say you're entering a mono-type team and you need to make sure each Pokemon on your team has the
+//      same type.
+
+const monoGround=[
+    {
+        species:    'Donphan',
+        type:       'Ground'
+    },
+    {
+        species:    'Sandslash',
+        type:       'Ground'
+    },
+    {
+        species:    'Hippowdon',
+        type:       'Ground'
+    },
+];
+
+const monoFighting=[
+    {
+        species:    'Machamp',
+        type:       'Fighting'
+    },
+    {
+        species:    'Hitmonlee',
+        type:       'Fighting'
+    },
+    {
+        species:    'Grumpig',
+        type:       'Psychic'
+    }
+]
+
+const groundNames=monoGround.map(function(pokes){
+    return pokes.species;
+})
+const fightNames=monoFighting.map(function(pokes){
+    return pokes.species;
+})
+
+// You can use the every() function to go through your team and make sure the type you want applies
+//      to every Pokemon in your team. If every element meets the conditon, every() will return
+//      "true", and if not, "false".
+
+function monoType(arr,type){
+    return arr.every(function(pokemon){
+        return pokemon.type===type;
+    })
+}
+
+const allGround=monoType(monoGround,'Ground');
+
+const allFighting=monoType(monoFighting,'Fighting');
+
+// Entering allGround will return "true", as all of the Pokemon in monoGround are Ground types,
+//      while allFighting will return "false", because Grumpig is not a Fighting type.
+
+groundField.innerText=`Ground Team: ${groundNames.join(', ')}`;
+fightField.innerText=`Fighting Team: ${fightNames.join(', ')}`;
+
+groundBtn.addEventListener('click',function(){
+    everyTest.value=JSON.stringify(allGround);
+})
+fightBtn.addEventListener('click',function(){
+    everyTest.value=JSON.stringify(allFighting);
+})
+
+// ----------------------------------------------------------------------------------------------------------------
