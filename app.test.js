@@ -64,8 +64,12 @@ describe('Checking for any instances with some()',function(){
     it('should return true or false depending on if element conditions are met',function(){
         let hasNormalType=hasType(Pokemon,'Normal');
         let hasWaterType=hasType(Pokemon,'Water');
+        let hasSalamence=hasPokemon(Pokemon,'Salamence');
+        let hasBlissey=hasPokemon(Pokemon,'Blissey');
         expect(hasNormalType).toEqual(true);
         expect(hasWaterType).toEqual(false);
+        expect(hasSalamence).toEqual(false);
+        expect(hasBlissey).toEqual(true);
     })
 })
 

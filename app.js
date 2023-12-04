@@ -29,10 +29,29 @@ const fightField=document.getElementById('monofight');
 const groundBtn=document.getElementById('ground');
 const fightBtn=document.getElementById('fighting');
 const everyTest=document.querySelector('#every input');
+const slakingBtn=document.getElementById('slaking');
+const flygonBtn=document.getElementById('flygon');
 
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
+
+// ----------------------------------------------------------------------------------------------------------------
+
+//      FROM
+
+// --------------------------------------------------------------
+
+// All of these methods will involve iterating through arrays, so it's important to remember that
+//      you can convert data from their current state into arrays via the from() function.
+
+const banana='banana';
+
+const bananaArr=Array.from(banana);
+
+// Entering 'banana' into the console will return a string, while entering 'bananaArr' will return
+//      an array with each letter as an element. This now allows you to loop functions through 
+//      'banana' that would otherwise be impossible since it's a string.
 
 // ----------------------------------------------------------------------------------------------------------------
 
@@ -520,14 +539,37 @@ const hasBugType=hasType(Pokemon,'Bug');
 
 //      In this case, hasBugType will return "false", because there are no bug types in the array.
 
+// You can expand this to any parameter, such as looking for a specific Pokemon. All you need is
+//      a very similar function checking for the species instead of the type:
+
+function hasPokemon(arr,species){
+    return arr.some(function(pokemon){
+        return pokemon.species===species;
+    })
+}
+
+//      Now you can check to see if you have a specific Pokemon in your PC.
+
+const hasSlaking=hasPokemon(Pokemon,'Slaking');
+
+const hasFlygon=hasPokemon(Pokemon,'Flygon');
+
+//      hasSlaking will return "true", as it's in the Pokemon array, while hasFlygon will return
+//      "false"
+
 somePokemon.innerText=names.join(', ');
 
 someDark.addEventListener('click',function(){
     typeField.value=JSON.stringify(hasDarkType);
 })
-
 someBug.addEventListener('click',function(){
     typeField.value=JSON.stringify(hasBugType);
+})
+slakingBtn.addEventListener('click',function(){
+    typeField.value=JSON.stringify(hasSlaking);
+})
+flygonBtn.addEventListener('click',function(){
+    typeField.value=JSON.stringify(hasFlygon);
 })
 
 // ----------------------------------------------------------------------------------------------------------------
@@ -605,5 +647,4 @@ groundBtn.addEventListener('click',function(){
 fightBtn.addEventListener('click',function(){
     everyTest.value=JSON.stringify(allFighting);
 })
-
 // ----------------------------------------------------------------------------------------------------------------
