@@ -93,3 +93,18 @@ describe('Using find() to filter for types of elements',function(){
         expect(JSON.stringify(findDark)).toEqual('{"species":"Absol","type":"Dark"}');
     })
 })
+
+describe('Finding the correct PC box with findIndex()',function(){
+    it('should move on to a new box every 6 indexes',function(){
+        let resultOne=whichBox(Pokemon,'Absol');
+        let resultTwo=whichBox(Pokemon,'Magmar');
+        let resultThree=whichBox(Pokemon,'Porygon-Z');
+        expect(resultOne).toBe('Absol is in Box 1');
+        expect(resultTwo).toBe('Magmar is in Box 2');
+        expect(resultThree).toBe('Porygon-Z is in Box 3');
+    })
+    it('should alert user if Pokemon is not in PC (index of -1)',function(){
+        let result=whichBox(Pokemon,'Missingno');
+        expect(result).toBe('Missingno is not in the PC');
+    })
+})

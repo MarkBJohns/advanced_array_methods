@@ -684,3 +684,75 @@ findSnorlaxBtn.addEventListener('click',function(){
 findBlazikenBtn.addEventListener('click',function(){
     findAnswer.value=JSON.stringify(findBlaziken);
 })
+
+// ----------------------------------------------------------------------------------------------------------------
+
+//                                           FINDINDEX
+
+// --------------------------------------------------------------
+
+// If you need to find the location of an element rather than just if the element exists, you can
+//      can use the findIndex() method. It will loop through the array to find the first element
+//      that meets your condition, and rather than return the element, it will return the index of
+//      the element.
+
+const waldoSearch=['citizen','citizen','clown','shopkeep','citizen','Waldo','citizen','officer'];
+
+// Say we're searching for Waldo in a sea of other people. We can search for him using the
+//      findIndex() method.
+
+function findWaldo(arr,name){
+    return arr.findIndex(function(val){
+        return val==='Waldo';
+    })
+}
+
+//      findWaldo() will iterate through waldoSearch until it finds 'Waldo', and rather than just
+//      confirm he's there, it will return an index number.
+
+const wheresWaldo=findWaldo(waldoSearch,'Waldo'); 
+
+//      Knowing where something is can have benefits over just confirming it exists or getting 
+//      more specific information.
+
+// For instance, if the "Pokemon" array represents Pokemon in a PC, each PC has multiple boxes that
+//      only hold a certain amount of Pokemon in them. If you're looking for a specific Pokemon,
+//      you can use the findIndex() method to see which box they're in.
+
+function whichBox(arr,name){
+    let boxCount=1;
+    const index=arr.findIndex(function(val,i){
+        if(val.species===name){
+            return true;
+        }
+        if((i+1)%5===0){
+            boxCount++;
+        }
+        return false;
+    })
+    let result;
+    if(index!==-1){
+        result=`${name} is in Box ${boxCount}`;
+    } else{
+        result=`${name} is not in the PC`;
+    }
+    return result;
+}
+
+//      Assuming you can fix 5 Pokemon per box, you can use the findIndex() method to get the index
+//      for that Pokemon, then use the number to see which Box they're in.
+
+const whereIsUmbreon=whichBox(Pokemon,'Umbreon');
+const whereIsNinetales=whichBox(Pokemon,'Ninetales');
+const whereIsTyranitar=whichBox(Pokemon,'Tyranitar');
+
+findIndexList.innerText=names.join(', ');
+umbreonBtn.addEventListener('click',function(){
+    findIndexAnswer.value=JSON.stringify(whereIsUmbreon);
+})
+nintalesBtn.addEventListener('click',function(){
+    findIndexAnswer.value=JSON.stringify(whereIsNinetales);
+})
+tyranitarBtn.addEventListener('click',function(){
+    findIndexAnswer.value=JSON.stringify(whereIsTyranitar);
+})
