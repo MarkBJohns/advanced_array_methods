@@ -1,37 +1,4 @@
 console.log('Advanced Array Methods');
-const rpsBtn=document.getElementById('rpsBtn');
-const rpsField=document.getElementById('rps');
-const firstNumField=document.getElementById('firstnum');
-const secondNumField=document.getElementById('secondnum');
-const doMath=document.querySelector('#arithmetic button');
-const answerField=document.getElementById('answer');
-const colorBlocks=document.querySelectorAll('.colorblock');
-const colorBtn=document.getElementById('color')
-const double=document.getElementById('dub');
-const triple=document.getElementById('trip');
-const quadruple=document.getElementById('quad');
-const mapField=document.getElementById('mapfield');
-const letterField=document.querySelector('#lettertest input');
-const vowelBtn=document.getElementById('vowels');
-const consonantBtn=document.getElementById('consonants');
-const resetBtn=document.getElementById('reset');
-const pokeList=document.getElementById('pokemon-list');
-const noramlBtn=document.getElementById('normal');
-const darkBtn=document.getElementById('dark');
-const fireBtn=document.getElementById('fire');
-const pokeField=document.querySelector('#filtertest input');
-const somePokemon=document.querySelector('#some p');
-const typeField=document.querySelector('#some input');
-const someDark=document.getElementById('somedark');
-const someBug=document.getElementById('somebug');
-const groundField=document.getElementById('monoground');
-const fightField=document.getElementById('monofight');
-const groundBtn=document.getElementById('ground');
-const fightBtn=document.getElementById('fighting');
-const everyTest=document.querySelector('#every input');
-const slakingBtn=document.getElementById('slaking');
-const flygonBtn=document.getElementById('flygon');
-
 // ----------------------------------------------------------------------------------------------------------------
 
 //                                     ADVANCED ARRAY METHODS
@@ -647,4 +614,73 @@ groundBtn.addEventListener('click',function(){
 fightBtn.addEventListener('click',function(){
     everyTest.value=JSON.stringify(allFighting);
 })
-// ----------------------------------------------------------------------------------------------------------------
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//                                           FIND
+
+// --------------------------------------------------------------
+
+
+// Similar to filter(), say you're looking for a very specific element, or you need a type of 
+//      element but the specific one doesn't matter. You can use the find() method to see if your
+//      array contains an element that meets specifications, and return the first element that 
+//      does, or return "undefined" if none of them do.
+
+const numbers=[1,2,3,4,5];
+
+//      Say we need a number divisible by 5, we can sort through the array to see if any of the
+//      numbers apply.
+
+const divisibleByFive=numbers.find(function(val){
+    return val=(val%5===0);
+});
+
+//      If you check the console, divisibleByFive will return '5', becaue 5 is the only number that
+//      applies. But if you need a number divisible by 2...
+
+const divisibleByTwo=numbers.find(function(val){
+    return val=(val%2===0);
+});
+
+//      ... divisibleByTwo will return '2', even though both 2 and 4 apply, because find() only
+//      returns the first applicable element rather than all of them.
+
+function findType(arr,searchType){
+    return arr.find(function(pokemon){
+        return pokemon.type===searchType;
+    })
+}
+
+// Now if you're fighting a Grass gym and want to grab whatever available Fire types you have, you
+//      can run a find() method on your Pokemon array to get the first one in the list.
+
+const findFire=findType(Pokemon,'Fire');
+
+//      This is go through 'Pokemon' until it finds a Fire type, in this case, Arcanine.
+
+// Say you need to find a certain species for a trade. You can look through your array to see if
+//      that Pokemon is in the list.
+
+function findPokemon(arr,searchName){
+    return arr.find(function(pokemon){
+        return pokemon.species===searchName;
+    })
+}
+
+//      Now you can just plug the name of the Pokemon you're looking for into your search function
+//      and it will return the Pokemon if you have one.
+
+const findSnorlax=findPokemon(Pokemon,'Snorlax');
+const findBlaziken=findPokemon(Pokemon,'Blaziken');
+
+findField.innerText=names.join(', ');
+findFireBtn.addEventListener('click',function(){
+    findAnswer.value=JSON.stringify(findFire);
+})
+findSnorlaxBtn.addEventListener('click',function(){
+    findAnswer.value=JSON.stringify(findSnorlax);
+})
+findBlazikenBtn.addEventListener('click',function(){
+    findAnswer.value=JSON.stringify(findBlaziken);
+})

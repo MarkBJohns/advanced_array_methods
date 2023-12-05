@@ -81,3 +81,15 @@ describe('Checking for unanimous instances with every()',function(){
         expect(monoType(testArrTwo,'Test')).toEqual(false);
     })
 })
+
+describe('Using find() to filter for types of elements',function(){
+    it('should return the correct element or undefined is none are applicable',function(){
+        let findCharizard=findPokemon(Pokemon,'Charizard');
+        let findMiltank=findPokemon(Pokemon,'Miltank');
+        expect(findCharizard).toEqual(undefined);
+        expect(JSON.stringify(findMiltank)).toEqual('{"species":"Miltank","type":"Normal"}');
+        let findDark=findType(Pokemon,'Dark');
+        let findFlying=findType(Pokemon,'Flying');
+        expect(JSON.stringify(findDark)).toEqual('{"species":"Absol","type":"Dark"}');
+    })
+})
