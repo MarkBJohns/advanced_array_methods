@@ -694,7 +694,8 @@ findBlazikenBtn.addEventListener('click',function(){
 // If you need to find the location of an element rather than just if the element exists, you can
 //      can use the findIndex() method. It will loop through the array to find the first element
 //      that meets your condition, and rather than return the element, it will return the index of
-//      the element.
+//      the element. If there is no instance of the condition you want in the array, findIndex()
+//      will return -1.
 
 const waldoSearch=['citizen','citizen','clown','shopkeep','citizen','Waldo','citizen','officer'];
 
@@ -756,3 +757,11 @@ nintalesBtn.addEventListener('click',function(){
 tyranitarBtn.addEventListener('click',function(){
     findIndexAnswer.value=JSON.stringify(whereIsTyranitar);
 })
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+//                                           REDUCE
+
+// --------------------------------------------------------------
+
+
