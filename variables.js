@@ -40,3 +40,6 @@ const findIndexAnswer=document.querySelector('#find-index input');
 const umbreonBtn=document.getElementById('umbreon');
 const nintalesBtn=document.getElementById('ninetales');
 const tyranitarBtn=document.getElementById('tyranitar');
+const reduceText=document.querySelector('#reduce p');
+const reduceField=document.querySelector('#reduce input');
+const reduceBtn=document.querySelector('#reduce button');

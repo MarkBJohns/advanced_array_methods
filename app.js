@@ -860,7 +860,7 @@ function countTypes(arr){
         }else{
             type[types]+=1;
         }
-        console.log(type);
+        // console.log(type);
         return type;
     },{});
 }
@@ -875,3 +875,8 @@ function countTypes(arr){
 //      of the types present in the array, as well as how many of them there are.
 
 const typeCountObj=countTypes(Pokemon);
+
+reduceText.innerText=names.join(', ');
+reduceBtn.addEventListener('click',function(){
+    reduceField.value=JSON.stringify(typeCountObj);
+})

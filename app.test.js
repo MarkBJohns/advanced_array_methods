@@ -108,3 +108,10 @@ describe('Finding the correct PC box with findIndex()',function(){
         expect(result).toBe('Missingno is not in the PC');
     })
 })
+
+describe('creating new objects from arrays with reduce()',function(){
+    let testArr=[{type:'yes'},{type:'no'},{type:'yes'}];
+    it('should count the amount of types and give accurate key/value pairs',function(){
+        expect(countTypes(testArr)).toEqual({"yes":2,"no":1});
+    })
+})

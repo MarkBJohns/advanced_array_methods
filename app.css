@@ -84,3 +84,10 @@ body{
     background-color: #333333;
     color: darkgray;
 }
+
+#reduce input{
+    width: 30vw;
+    text-align: center;
+    background-color: #333333;
+    color: darkgray;
+}
