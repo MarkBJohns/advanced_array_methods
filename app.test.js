@@ -87,10 +87,10 @@ describe('Using find() to filter for types of elements',function(){
         let findCharizard=findPokemon(Pokemon,'Charizard');
         let findMiltank=findPokemon(Pokemon,'Miltank');
         expect(findCharizard).toEqual(undefined);
-        expect(JSON.stringify(findMiltank)).toEqual('{"species":"Miltank","type":"Normal"}');
+        expect(JSON.stringify(findMiltank)).toEqual('{"species":"Miltank","type":"Normal","dexNum":"241"}');
         let findDark=findType(Pokemon,'Dark');
         let findFlying=findType(Pokemon,'Flying');
-        expect(JSON.stringify(findDark)).toEqual('{"species":"Absol","type":"Dark"}');
+        expect(JSON.stringify(findDark)).toEqual('{"species":"Absol","type":"Dark","dexNum":"359"}');
     })
 })
 

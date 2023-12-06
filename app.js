@@ -351,47 +351,58 @@ resetBtn.addEventListener('click',function(){
 const Pokemon=[
     {
         species : 'Absol',
-        type    : 'Dark'
+        type    : 'Dark',
+        dexNum  : '359'
     },
     {
         species : 'Miltank',
-        type    : 'Normal'
+        type    : 'Normal',
+        dexNum  : '241'
     },
     {
         species : 'Umbreon',
-        type    : 'Dark'
+        type    : 'Dark',
+        dexNum  : '197'
     },
     {
         species : 'Arcanine',
-        type    : 'Fire'
+        type    : 'Fire',
+        dexNum  : '059'
     },
     {
         species : 'Snorlax',
-        type    : 'Normal'
+        type    : 'Normal',
+        dexNum  : '143'
     },
     {
         species : 'Slaking',
-        type    : 'Normal'
+        type    : 'Normal',
+        dexNum  : '289'
     },
     {
         species : 'Ninetales',
-        type    : 'Fire'
+        type    : 'Fire',
+        dexNum  : '038'
     },
     {
         species : 'Zoroark',
-        type    : 'Dark'
+        type    : 'Dark',
+        dexNum  : '571'
     },
     {
         species : 'Blissey',
-        type    : 'Normal'
+        type    : 'Normal',
+        dexNum  : '242'
     },
     {
         species : 'Magmar',
-        type    : 'Fire'
+        type    : 'Fire',
+        dexNum  : '126'
     },
     {
         species : 'Porygon-Z',
-        type    : 'Normal'
+        type    : 'Normal',
+        dexNum  : '474'
     }
 ];
 
@@ -765,3 +776,102 @@ tyranitarBtn.addEventListener('click',function(){
 // --------------------------------------------------------------
 
 
+// While the most complicated of the array methods covered so far, reduce() is useful because it
+//      takes an array and converts it to a single element. It will iterate through the array 
+//      performing a callback function for each element, but rather than returning/transforming
+//      an array or boolean, it will "accumulate" a value for each iteration and return the final
+//      accumulation. The easiest example to understand would be an addition reduce() function.
+
+const addNumberArr=[1,2,3,4];
+
+function addAllElements(arr){
+    return arr.reduce(function(accumulator,currentVal){
+        return accumulator+currentVal;
+    })
+}
+
+// A reduce() function has two parameters, an accumulator, and a current value. However, the
+//      second parameter does not need to specified, as if it's not given, the function will
+//      automatically choose the first value in the array. In this case, addAllElements() started
+//      with 1 and added each of the currentVal elements from there
+
+const addNumberArrSum=addAllElements(addNumberArr);
+
+//      Now addNumberArrSum will return 10, because 1+2+3+4=10.
+
+// If you do want to manually add a second parameter, it goes at the end of the function rather 
+//      than the beginning:
+
+function addAllElementsPlusTen(arr){
+    return arr.reduce(function(accumulator,currentVal){
+        return accumulator+currentVal;
+    },10);
+}
+
+//      The ",10" at the end of the function give 10 as the first currentVal value, so rather than
+//      starting at the first index (1) like addAllElements did, it started at the second parameter
+//      and added the first index to that. 
+
+const addNumberArrSumPlusTen=addAllElementsPlusTen(addNumberArr);
+
+//      Because it started with 10, addNumberArrSumPlusTen will equal 20.
+
+// --------------------------------------------------------------
+
+// While this doesn't seem particularly useful or complex enough to require its own method, there
+//      are more useful uses for reduce().
+
+const newArr=[2,14,8,23,15];
+
+// Here we have an array with out of order number values. If we want to find the biggest value in
+//      the array, we can use reduce() to go through each of the elements and save the biggest 
+//      value as the accumulator.
+
+function findMaxVal(arr){
+    return arr.reduce(function(max,currentVal){
+        if(currentVal>max){
+            return currentVal;
+        }
+        return max;
+    })
+}
+
+const newArrMax=findMaxVal(newArr);
+
+//      As the function iterates through newArr, assigns 2 as the 'max' (accumulator) until it
+//      gets to 14, and assigns that as the new 'max'. It doesn't assign 8 as it's less than 14,
+//      but then assigns 23, then doesn't assign 15, and returns 23 as the final value.
+
+// --------------------------------------------------------------
+
+// The previous example can just as easily be accomplished with the max() method, but it shows that
+//      reduce() isn't soley for mathmatical functions and can return types of elements rather than
+//      only performing functions.
+
+// Say you want to go through the Pokemon array to see how many of each type there are. Rather 
+//      than getting a new array, you can use reduce() to get an object that creates a count for 
+//      each type.
+
+function countTypes(arr){
+    return arr.reduce(function(type,currentMon){
+        const types=currentMon.type;
+        if(type[types]==null){
+            type[types]=1;
+        }else{
+            type[types]+=1;
+        }
+        console.log(type);
+        return type;
+    },{});
+}
+
+// To see how this function works, un-comment the console.log line. The second parameter, an empty
+//      object, is the first accumulator in this reduce() function. On the first iteration, it 
+//      goes through Absol, a Dark type, which saves 'types' as 'Dark'. The conditional checks to
+//      see if our empty object has a key called 'Dark' already, and since it does not, it adds it.
+
+// As it iterates, it gets the type of each Pokemon, adds it to the object if it's not already
+//      present, or adds to the count if it is. By the end of the function, we have a list of each
+//      of the types present in the array, as well as how many of them there are.
+
+const typeCountObj=countTypes(Pokemon);
